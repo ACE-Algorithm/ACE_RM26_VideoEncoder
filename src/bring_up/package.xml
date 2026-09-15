@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>bring_up</name>
+  <version>0.0.0</version>
+  <description>Launch and configuration files for the LOB camera pipeline.</description>
+  <maintainer email="3094783174@qq.com">rm-young</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>hik_camera</exec_depend>
+  <exec_depend>image_serial</exec_depend>
+  <exec_depend>landing_point_detector</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
+  <exec_depend>rclcpp_components</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
