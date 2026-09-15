@@ -1,0 +1,62 @@
+/landing_point_detector:
+  ros__parameters:
+    image_topic: "/image_raw"
+
+    #用于lob_shot.launch.py
+    enable_serial_transmitter: false  # true 时启动 serial_transmitter_node
+    enable_decode_node: true         # true 时启动 ros2_packet_decode_receiver 节点
+
+    # center crop topics
+    center_crop_packet_topic: "/landing_point_detector/center_crop_packets/compressed"
+    center_crop_debug_topic: "/image/center_crop"
+
+    # center crop codec parameters
+    center_crop_size: 1000
+    center_crop_width: 300
+    center_crop_height: 300
+    center_crop_packet_send_rate_hz: 40.0
+    center_crop_codec_fps: 12.0
+    center_crop_bitrate_kbps: 80
+    center_crop_abr_min_bitrate_kbps: 40
+    center_crop_abr_max_bitrate_kbps: 80
+    center_crop_abr_buffer_size_kbits: 24
+    center_crop_max_packet_bytes: 300
+    center_crop_keyframe_interval_frames: 24
+    center_crop_max_reorder_frames: 8
+    center_crop_x264_preset: "slow"
+    center_crop_static_simplify: true
+    center_crop_motion_threshold: 14
+    center_crop_motion_erode_px: 1
+    center_crop_motion_dilate_px: 2
+    center_crop_motion_trail_frames: 8
+    center_crop_trail_disable_motion_ratio: 0.2
+    center_crop_bg_update_alpha: 0.01
+    center_crop_bg_blur_sigma: 1.2
+    center_crop_center_clear_size: 100
+    center_crop_center_color_roi: false
+    center_crop_center_bitrate_roi: false
+    center_crop_center_bitrate_roi_qoffset: -0.20
+    record_video: false
+    debug: true
+
+/serial_transmitter_node:
+  ros__parameters:
+    serial_port: "/dev/ttyACM0"
+    baud_rate: 921600
+    character_size: 8
+    stop_bits: "one"   # one / onepointfive / two
+    parity: "none"     # none / odd / even
+
+/ros2_packet_decode_receiver:
+  ros__parameters:
+    input_topic: "/landing_point_detector/center_crop_packets/compressed"
+    output_topic: "/image/decoded"
+    width: 300
+    height: 300
+    codec_fps: 12.0
+    bitrate_kbps: 100
+    max_packet_bytes: 300
+    keyframe_interval_frames: 24
+    max_reorder_frames: 8
+    display_fps: 12.0
+    min_display_latency_ms: 400.0

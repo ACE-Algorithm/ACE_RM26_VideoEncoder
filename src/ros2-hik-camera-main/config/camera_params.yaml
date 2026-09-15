@@ -1,0 +1,9 @@
+/hik_camera:
+  ros__parameters:
+    camera_name: narrow_stereo
+    camera_index : 0
+    device_id: "DA8541021"
+    exposure_time: 20000
+    gain: 15.0
+    binning : 1
+    flip_vertically: false
